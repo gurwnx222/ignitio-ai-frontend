@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import CodeLessonView from "./CodeLessonView";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -226,13 +227,21 @@ function StepCard({ lesson, step, onPrev, onNext }) {
           >
             <ArrowLeftIcon /> Previous
           </button>
-          <button
-            onClick={onNext}
-            className="flex items-center gap-2 rounded-xl bg-[#3730D4] px-5 py-2.5 text-[13.5px] font-bold text-white transition-all duration-150 hover:bg-[#2e28b8] active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed"
-            disabled={step.stepNumber === lesson.totalSteps}
-          >
-            Continue to Step {step.stepNumber + 1} <ArrowRightIcon />
-          </button>
+          {step.stepNumber === lesson.totalSteps ? (
+            <button
+              onClick={onNext}
+              className="flex items-center gap-2 rounded-xl bg-[#3730D4] px-5 py-2.5 text-[13.5px] font-bold text-white transition-all duration-150 hover:bg-[#2e28b8] active:scale-[0.97]"
+            >
+              Start Code Examples <ArrowRightIcon />
+            </button>
+          ) : (
+            <button
+              onClick={onNext}
+              className="flex items-center gap-2 rounded-xl bg-[#3730D4] px-5 py-2.5 text-[13.5px] font-bold text-white transition-all duration-150 hover:bg-[#2e28b8] active:scale-[0.97]"
+            >
+              Continue to Step {step.stepNumber + 1} <ArrowRightIcon />
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -295,6 +304,7 @@ export default function LearningPageClient({ course }) {
     course.lessons.findIndex((l) => l.current) ?? 0
   );
   const [activeStepIdx, setActiveStepIdx] = useState(0);
+  const [mode, setMode] = useState("theory"); // "theory" | "code"
 
   const lesson = course.lessons[activeLessonIdx];
   const step   = lesson?.steps?.[activeStepIdx];
@@ -302,10 +312,14 @@ export default function LearningPageClient({ course }) {
   const handleSelectLesson = (idx) => {
     setActiveLessonIdx(idx);
     setActiveStepIdx(0);
+    setMode("theory");
   };
 
   const handleNext = () => {
-    if (activeStepIdx < lesson.steps.length - 1) {
+    const isLastStep = activeStepIdx === lesson.steps.length - 1;
+    if (isLastStep && lesson.codeLesson) {
+      setMode("code");
+    } else if (!isLastStep) {
       setActiveStepIdx((s) => s + 1);
     }
   };
@@ -315,6 +329,17 @@ export default function LearningPageClient({ course }) {
       setActiveStepIdx((s) => s - 1);
     }
   };
+
+  if (mode === "code" && lesson?.codeLesson) {
+    return (
+      <div className="min-h-screen bg-[#f4f3f8]">
+        <CodeLessonView
+          codeLesson={lesson.codeLesson}
+          onBack={() => setMode("theory")}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="flex gap-8 px-8 py-8 max-w-[1100px] mx-auto w-full">
