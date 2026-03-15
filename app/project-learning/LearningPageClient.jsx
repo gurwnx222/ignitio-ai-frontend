@@ -334,7 +334,7 @@ export default function LearningPageClient({ course }) {
     return (
       <div className="min-h-screen bg-[#f4f3f8]">
         <CodeLessonView
-          codeLesson={lesson.codeLesson}
+          lessonId={lesson.id}
           onBack={() => setMode("theory")}
         />
       </div>
