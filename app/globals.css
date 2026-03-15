@@ -16,19 +16,21 @@
 }
 
 /* ─── Reset ──────────────────────────────────────────────────────────────── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-html,
-body {
-  height: 100%;
-  font-family: -apple-system, "SF Pro Display", "Segoe UI", sans-serif;
-  -webkit-font-smoothing: antialiased;
+  html,
+  body {
+    height: 100%;
+    font-family: -apple-system, "SF Pro Display", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
 /* ─── Keyframes (referenced via Tailwind animate-[...] arbitrary values) ──── */

@@ -111,7 +111,7 @@ export default function Home() {
     >
       <Header />
 
-      <main className="flex-1 flex items-center justify-center px-6 py-10">
+      <main className="flex-1 flex items-center justify-center px-5 sm:px-10 py-10">
         {topic ? (
           // ── Loader view ──────────────────────────────────────────────────
           <BuilderLoader topic={topic} />
@@ -129,9 +129,9 @@ export default function Home() {
               ready AI applications.
             </p>
 
-            <div className="w-full bg-white rounded-[18px] border border-[#e6e4ee] shadow-[0_2px_24px_0_rgba(80,60,180,0.07),0_1px_4px_0_rgba(60,40,140,0.05)] px-5 pt-4 pb-3 transition-shadow duration-200 focus-within:shadow-[0_4px_32px_0_rgba(80,60,180,0.12),0_0_0_2px_rgba(55,48,212,0.08)]">
+            <div className="w-full bg-white rounded-[18px] border border-[#e6e4ee] shadow-[0_2px_24px_0_rgba(80,60,180,0.07),0_1px_4px_0_rgba(60,40,140,0.05)] px-6 pt-5 pb-4 transition-shadow duration-200 focus-within:shadow-[0_4px_32px_0_rgba(80,60,180,0.12),0_0_0_2px_rgba(55,48,212,0.08)]">
               <textarea
-                className="w-full resize-none border-0 outline-none bg-transparent text-[15px] leading-relaxed text-[#12102b] font-[inherit] min-h-[72px] placeholder:text-[#b0afc0] px-1 py-2"
+                className="w-full resize-none border-0 outline-none bg-transparent text-[15px] leading-relaxed text-[#12102b] font-[inherit] min-h-[72px] placeholder:text-[#b0afc0] px-3 py-2"
                 placeholder="Write the topic you wanted to generate the meme..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
