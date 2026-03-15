@@ -1,17 +1,27 @@
+"use client";
+
+import { useState } from "react";
 import Header from "@/components/Header";
 import LearnButton from "@/components/LearnButton";
 import MemeInput from "@/components/MemeInput";
+import MemeLoader from "@/components/MemeLoader";
 
-export default function Home() {
+export default function MemePage() {
+  const [topic, setTopic] = useState(null);
+
   return (
     <div className="flex min-h-screen flex-col bg-[#EEEEF3]">
       <Header />
 
       <main className="flex flex-1 flex-col items-center justify-center gap-8 px-4 py-16">
+        {topic && (
+          <MemeLoader topic={topic} onCancel={() => setTopic(null)} />
+        )}
+
         <LearnButton />
 
         <div className="w-full max-w-xl">
-          <MemeInput />
+          <MemeInput onGenerate={(val) => setTopic(val)} />
         </div>
 
         <p className="text-center text-[11px] text-gray-400">

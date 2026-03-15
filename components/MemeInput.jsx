@@ -5,7 +5,7 @@ import { Image, Smile, Sparkles, Brain } from "lucide-react";
 
 const SUGGESTIONS = ["Distracted Boyfriend AI version", "Coding at 3 AM", "Future of Work"];
 
-export default function MemeInput() {
+export default function MemeInput({ onGenerate }) {
   const [value, setValue] = useState("");
 
   return (
@@ -53,6 +53,7 @@ export default function MemeInput() {
 
           <button
             disabled={!value.trim()}
+            onClick={() => value.trim() && onGenerate?.(value.trim())}
             className="rounded-xl bg-indigo-700 px-5 py-2 text-sm font-semibold text-white transition-all duration-150 hover:bg-indigo-800 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-40"
           >
             Generate &gt;
