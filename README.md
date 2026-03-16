@@ -250,6 +250,6 @@ The frontend demonstrates:
 
 ## Backend
 
-The Python LangGraph backend repo lives here: **[→ Backend Repository](<backend-repo-url>)**
+The Python LangGraph backend repo lives here: **[→ Backend Repository](https://github.com/gurwnx222/ignitio-ai-tutor)**
 
 The backend runs the full multi-agent pipeline — Orchestrator → Builder → Teaching → Critic — and exposes the results via FastAPI endpoints that this frontend consumes.
